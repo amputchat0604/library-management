@@ -1,0 +1,183 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: 'Rozha One', sans-serif;
+    background-color:#836953;
+    margin: 0;
+}
+
+form {
+    margin-left: 70px;
+}
+
+input {
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.section-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg?cs=srgb&dl=pexels-minan1398-694740.jpg&fm=jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height:500px;
+    background-size:  100%;
+}
+
+.Section-1-text {
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+h2 {
+    color: #351E10;
+    padding: 10;
+    margin-left: 70px;
+    margin-top: 20px;
+}
+
+input {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+button {
+    background-color: #351E10;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #483c32;
+}
+
+.fav-button {
+    background-color: #410200;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-bottom: 100px;
+    font-family: 'Rozha One', sans-serif;
+}
+
+.all-button {
+    background-color: #410200;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    font-family: 'Rozha One', sans-serif;
+}
+
+.fav-button:hover,.all-button:hover {
+    background-color: #7b3f00;
+}
+
+.search-sec {
+    padding-top: 50px;
+}
+
+.search-book, .fav-book, .all-book {
+    color: #fff;
+    font-size: 15px;
+    background-color: #4a2c2a;
+    margin: 70px 30px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-book {
+    font-family: 'Rozha One', sans-serif;
+    color: #fff;
+    font-size: 15px;
+    background-color: #876e4b;
+    margin: 20px 10px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;  
+}
+
+.list-fav-book {
+    font-family: 'Rozha One', sans-serif;
+    color: #fff;
+    font-size: 15px;
+    background-color: #371d10;
+    margin: 20px 10px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;  
+}
+
+.list-search-book {
+    font-family: 'Rozha One', sans-serif;
+    color: #fff;
+    font-size: 15px;
+    background-color: #7f5112;
+    margin: 20px 10px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;  
+}
+
+.book-icon {
+    padding: 7px;
+    border-radius: 50px;
+    background-color: #4a3728;
+    color: white;
+}
+
+.error {
+    font-size: 20px;
+    color: red;
+    margin-left: 70px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

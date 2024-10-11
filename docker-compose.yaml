@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: library_management
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    ports:
+      - "5432:5432" 
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.backend
+    depends_on:
+      - db
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - app-network
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.frontend
+    networks:
+      - app-network
+    ports:
+      - "80:80"
+
+networks:
+  app-network:
+
+volumes:
+  db-data:

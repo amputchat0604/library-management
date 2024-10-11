@@ -1,0 +1,14 @@
+# Use the official Nginx image from Docker Hub
+FROM nginx:alpine
+
+# Remove the default Nginx static files
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your custom HTML, CSS, and JavaScript files to the Nginx directory
+COPY frontend/ /usr/share/nginx/html/
+
+# Expose port 80 to serve the web application
+EXPOSE 80
+
+# Start Nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]
