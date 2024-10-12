@@ -6,9 +6,9 @@ app = Flask(__name__)
 def connect_db():
     conn = psycopg2.connect(
         host="db",
-        database="book_inventory",
+        database="library_management",
         user="postgres",
-        password="password"
+        password="1234"
     )
     return conn
 
@@ -65,7 +65,7 @@ def insert_book():
     conn = connect_db()
     cursor = conn.cursor()
 
-    query = "INSERT INTO books (isbn, title, author, year) VALUES (%s, %s, %s, %s, %s);"
+    query = "INSERT INTO books (isbn, title, author, year) VALUES (%s, %s, %s, %s);"
     try:
         cursor.execute(query, (isbn, title, author, year))
         conn.commit()
