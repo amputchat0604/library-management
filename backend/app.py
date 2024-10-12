@@ -65,7 +65,8 @@ def insert_book():
     conn = connect_db()
     cursor = conn.cursor()
 
-    query = "INSERT INTO books (isbn, title, author, year) VALUES (%s, %s, %s, %s);"
+    # Insert book with is_favorite set to FALSE by default
+    query = "INSERT INTO books (isbn, title, author, year, is_favorite) VALUES (%s, %s, %s, %s, FALSE);"
     try:
         cursor.execute(query, (isbn, title, author, year))
         conn.commit()

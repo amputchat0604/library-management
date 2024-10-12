@@ -7,7 +7,7 @@
   
 body {
     font-family: 'Rozha One', sans-serif;
-    background-color:#836953;
+    background-color:#6c5947;
     margin: 0;
 }
 
@@ -42,10 +42,11 @@ input {
 }
 
 h2 {
-    color: #351E10;
+    color: #c1b79e;
     padding: 10;
     margin-left: 70px;
     margin-top: 20px;
+    font-size: 35px;
 }
 
 input {
@@ -112,8 +113,11 @@ button:hover {
     background-color: #7b3f00;
 }
 
-.search-sec {
-    padding-top: 50px;
+.search-sec, .add-sec, .delete-sec, .mark-fav-sec, .fav-sec {
+    padding: 30px;
+    background-color:#5a2f1c;
+    border-radius: 20px;
+    margin: 50px;
 }
 
 .search-book, .fav-book, .all-book {

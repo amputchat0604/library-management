@@ -35,37 +35,45 @@
 
     <div class="search-book" id="searchBookInfo"></div>
 
-    <h2>Add New Book</h2>
-    <form id="addBookForm">
-        <input type="text" id="addIsbn" placeholder="ISBN" required>
-        <input type="text" id="addTitle" placeholder="Title" required>
-        <input type="text" id="addAuthor" placeholder="Author" required>
-        <input type="text" id="addYear" placeholder="Year" required>
-        <button type="submit">
-            <i class="fa-solid fa-plus"></i>
-        </button>
-    </form>
+    <div class="add-sec">
+        <h2>Add New Book</h2>
+        <form id="addBookForm">
+            <input type="text" id="addIsbn" placeholder="ISBN" required>
+            <input type="text" id="addTitle" placeholder="Title" required>
+            <input type="text" id="addAuthor" placeholder="Author" required>
+            <input type="text" id="addYear" placeholder="Year" required>
+            <button type="submit">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </form>
+    </div>
 
-    <h2>Delete Book</h2>
-    <form id="deleteBookForm">
-        <input type="text" id="deleteIsbn" placeholder="ISBN" required>
-        <button type="submit">
-            <i class="fa-solid fa-trash"></i>
-        </button>
-    </form>
+    <div class="delete-sec">
+        <h2>Delete Book</h2>
+        <form id="deleteBookForm">
+            <input type="text" id="deleteIsbn" placeholder="ISBN" required>
+            <button type="submit">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </form>
+    </div>
 
-    <h2>Mark Book as Favorite</h2>
-    <form id="favoriteBookForm">
-        <input type="text" id="favoriteIsbn" placeholder="ISBN" required>
-        <button type="submit">
-            <i class="fa-solid fa-bookmark"></i>
-        </button>
-    </form>
+    <div class="mark-fav-sec">
+        <h2>Mark Book as Favorite</h2>
+        <form id="favoriteBookForm">
+            <input type="text" id="favoriteIsbn" placeholder="ISBN" required>
+            <button type="submit">
+                <i class="fa-solid fa-bookmark"></i>
+            </button>
+        </form>
+    </div>
 
-    <h2>Favorite Books</h2>
-    <button id="viewFavoritesButton" class="fav-button" type="submit">view favorite</button>
+    <div class="fav-sec">
+        <h2>Favorite Books</h2>
+        <button id="viewFavoritesButton" class="fav-button" type="submit">view favorite</button>
 
-    <div class="fav-book" id="favoriteBooks"></div>
+        <div class="fav-book" id="favoriteBooks"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
