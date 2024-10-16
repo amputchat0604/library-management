@@ -35,6 +35,8 @@ input {
 .Section-1-text {
     justify-content: center;
     align-items: center;
+    align-content: center;
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
@@ -88,9 +90,8 @@ button:hover {
     font-size: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
     margin-left: 70px;
-    margin-bottom: 100px;
+    margin-bottom: 0;
     font-family: 'Rozha One', sans-serif;
 }
 
@@ -114,35 +115,42 @@ button:hover {
 }
 
 .search-sec, .add-sec, .delete-sec, .mark-fav-sec, .fav-sec {
-    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
     background-color:#5a2f1c;
     border-radius: 20px;
     margin: 50px;
 }
 
-.search-book, .fav-book, .all-book {
+.search-book, .all-book, .fav-book {
     color: #fff;
     font-size: 15px;
     background-color: #4a2c2a;
     margin: 70px 30px;
     border-radius: 20px;
     padding: 10px 20px;
-    display: none;
     justify-content: center;
     align-items: center;
+    max-height: 400px; 
+    overflow-y: scroll; 
+    display: none;
 }
 
 .list-book {
-    font-family: 'Rozha One', sans-serif;
-    color: #fff;
-    font-size: 15px;
-    background-color: #876e4b;
-    margin: 20px 10px;
-    border-radius: 20px;
-    padding: 10px 20px;
-    display: none;
-    justify-content: center;
-    align-items: center;  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #A68B6B; 
+    border-radius: 10px;
+    padding: 15px 20px;  
+    margin: 15px 0;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    transition: background-color 0.3s ease;
+}
+
+.list-book:hover, .list-search-book:hover {
+    background-color: #8C6B51; 
 }
 
 .list-fav-book {
@@ -159,24 +167,97 @@ button:hover {
 }
 
 .list-search-book {
-    font-family: 'Rozha One', sans-serif;
-    color: #fff;
-    font-size: 15px;
-    background-color: #7f5112;
-    margin: 20px 10px;
-    border-radius: 20px;
-    padding: 10px 20px;
-    display: none;
-    justify-content: center;
-    align-items: center;  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #A68B6B; 
+    border-radius: 10px;
+    padding: 15px 20px;  
+    margin: 15px 0;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
 }
 
 .book-icon {
-    padding: 7px;
-    border-radius: 50px;
-    background-color: #4a3728;
-    color: white;
+    margin-right: 20px;
+    font-size: 20px; 
+    color: #4a3728;
 }
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-details p {
+    margin: 0;
+}
+
+.book-details p:first-child {
+    font-size: 18px; 
+    font-weight: bold;
+    color: #3E2C2A; 
+}
+
+.book-details p:nth-child(2),
+.book-details p:nth-child(3)  {
+    font-size: 16px;
+    color: #5a4c3a;
+}
+
+.list-book:hover .book-details p:first-child,
+.list-search-book:hover .book-details p:first-child {
+    color: #fff; 
+}
+
+.list-book:hover .book-details  p:nth-child(2),
+.list-book:hover .book-details  p:nth-child(3),
+.list-search-book:hover .book-details  p:nth-child(2),
+.list-search-book:hover .book-details  p:nth-child(3) {
+    color: #f0e68c; 
+}
+
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-content {
+    background-color: #5a2f1c;
+    font-family: 'Rozha One', sans-serif;
+    font-size: 30px;
+    color: #c1b79e;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 30%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease;
+}
+
+.close-button {
+    background-color: #4A2C2A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: large;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #7b3f00;
+}
+
 
 .error {
     font-size: 20px;
@@ -184,4 +265,15 @@ button:hover {
     margin-left: 70px;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%); 
+        opacity: 0; 
+    }
+    to {
+        transform: translateY(0); 
+        opacity: 1; 
+    }
 }

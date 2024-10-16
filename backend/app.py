@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import psycopg2
 
 app = Flask(__name__)
+CORS(app)
 
-def connect_db():
+def connectDb():
     conn = psycopg2.connect(
         host="db",
         database="library_management",
@@ -12,9 +14,26 @@ def connect_db():
     )
     return conn
 
+def initBooksTable():
+    conn = connectDb()
+    cursor = conn.cursor()
+
+    create_table_query = """
+    CREATE TABLE IF NOT EXISTS books (
+        isbn VARCHAR(17) PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        author VARCHAR(255) NOT NULL,
+        year INTEGER CHECK (year >= 1000 AND year <= EXTRACT(YEAR FROM CURRENT_DATE)),
+        is_favorite BOOLEAN DEFAULT FALSE
+    );
+    """
+    cursor.execute(create_table_query)
+    conn.commit()
+    conn.close()
+
 @app.route('/book/<isbn>', methods=['GET'])
-def get_book(isbn):
-    conn = connect_db()
+def getBook(isbn):
+    conn = connectDb()
     cursor = conn.cursor()
 
     query = "SELECT title, author, year, is_favorite FROM books WHERE isbn = %s;"
@@ -34,8 +53,8 @@ def get_book(isbn):
         return jsonify({"error": "Book not found"}), 404
     
 @app.route('/books', methods=['GET'])
-def get_books():
-    conn = connect_db()
+def getBooks():
+    conn = connectDb()
     cursor = conn.cursor()
 
     query = "SELECT isbn, title, author, year FROM books;"
@@ -55,31 +74,40 @@ def get_books():
     return jsonify({"books": books_list}), 200
 
 @app.route('/book', methods=['POST'])
-def insert_book():
+def insertBook():
     data = request.json
     isbn = data['isbn']
     title = data['title']
     author = data['author']
     year = data['year']
 
-    conn = connect_db()
+    conn = connectDb()
     cursor = conn.cursor()
 
-    # Insert book with is_favorite set to FALSE by default
-    query = "INSERT INTO books (isbn, title, author, year, is_favorite) VALUES (%s, %s, %s, %s, FALSE);"
+    query = """
+    INSERT INTO books (isbn, title, author, year, is_favorite) 
+    VALUES (%s, %s, %s, %s, FALSE);
+    """
     try:
         cursor.execute(query, (isbn, title, author, year))
         conn.commit()
         return jsonify({"message": "Book added successfully"}), 201
-    except psycopg2.IntegrityError:
+    except psycopg2.IntegrityError as e:
         conn.rollback()
-        return jsonify({"error": "Book with this ISBN already exists"}), 409
+        error_message = str(e)
+        
+        if 'books_pkey' in error_message:
+            return jsonify({"error": "A book with this ISBN already exists"}), 409
+        elif 'check constraint' in error_message and 'books_year_check' in error_message:
+            return jsonify({"error": "Year must be between 1000 and the current year"}), 400
+        else:
+            return jsonify({"error": f"Failed : ${error_message}"}), 400
     finally:
         conn.close()
 
 @app.route('/book/<isbn>', methods=['DELETE'])
-def delete_book(isbn):
-    conn = connect_db()
+def deleteBook(isbn):
+    conn = connectDb()
     cursor = conn.cursor()
 
     query = "DELETE FROM books WHERE isbn = %s;"
@@ -93,8 +121,8 @@ def delete_book(isbn):
         return jsonify({"error": "Book not found"}), 404
 
 @app.route('/book/<isbn>/favorite', methods=['POST'])
-def mark_favorite(isbn):
-    conn = connect_db()
+def markFavorite(isbn):
+    conn = connectDb()
     cursor = conn.cursor()
 
     query = "UPDATE books SET is_favorite = TRUE WHERE isbn = %s;"
@@ -108,8 +136,8 @@ def mark_favorite(isbn):
         return jsonify({"error": "Book not found"}), 404
 
 @app.route('/book/favorites', methods=['GET'])
-def get_favorites():
-    conn = connect_db()
+def getFavorites():
+    conn = connectDb()
     cursor = conn.cursor()
 
     query = "SELECT isbn, title, author, year FROM books WHERE is_favorite = TRUE;"
@@ -129,4 +157,5 @@ def get_favorites():
     return jsonify(favorite_books), 200
 
 if __name__ == "__main__":
+    initBooksTable()
     app.run(host="0.0.0.0", port=5000)

@@ -9,15 +9,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
 </head>
 <body>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <div style="margin: auto; padding-bottom: 20px;">
+                <p id="modalMessage"></p>
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="close-button" id="closeModalButton">Got it!</button>
+            </div>
+        </div>
+    </div>  
+
     <div class="section-1">
         <div class="Section-1-text">
-            <center>
-                <h1>Welcome to Our Library</h1>
-                <p>You can find out yours book here.</p>
-                <button id="allBooksButton" class="all-button" type="submit">all books</button>
-            </center>
+            <h1>Welcome to Our Library</h1>
+            <p>You can find out yours book here.</p>
+            <button id="allBooksButton" class="all-button" type="submit">Show all books</button>
         </div>
     </div>
 
@@ -34,6 +45,8 @@
     </div>
 
     <div class="search-book" id="searchBookInfo"></div>
+
+    
 
     <div class="add-sec">
         <h2>Add New Book</h2>
@@ -59,7 +72,7 @@
     </div>
 
     <div class="mark-fav-sec">
-        <h2>Mark Book as Favorite</h2>
+        <h2>Mark Book as Favourite</h2>
         <form id="favoriteBookForm">
             <input type="text" id="favoriteIsbn" placeholder="ISBN" required>
             <button type="submit">
@@ -69,12 +82,10 @@
     </div>
 
     <div class="fav-sec">
-        <h2>Favorite Books</h2>
-        <button id="viewFavoritesButton" class="fav-button" type="submit">view favorite</button>
-
-        <div class="fav-book" id="favoriteBooks"></div>
+        <h2>Favourite Books</h2>
+        <button id="viewFavoritesButton" class="fav-button" type="submit">Show favourite books</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="fav-book" id="favoriteBooks"></div>
 </body>
 </html>
